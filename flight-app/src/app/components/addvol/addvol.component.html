@@ -1,0 +1,121 @@
+<div class="container-xl">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4><b>New Flight</b></h4>
+          </div>
+          <div class="col-sm-6 text-right">
+            <a href="#" routerLink="/Home" class="btn btn-success back">
+              <i class="fas fa-arrow-circle-left"></i>&nbsp;Back
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <form #flightForm="ngForm" (ngSubmit)="saveVol()">
+        <div class="table-content">
+
+          <!-- Plane Number Selector -->
+          <div class="form-group row">
+            <label for="avionSelect" class="col-sm-3 col-form-label">Plane Number:</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="avionSelect" [(ngModel)]="volRequest.numAvion" name="numAvion" #numAvion="ngModel" required>
+                <option *ngFor="let avion of avions" [value]="avion.numAvion">{{ avion.numAvion }}</option>
+              </select>
+              <div *ngIf="numAvion.invalid && isSubmitted" class="alert alert-danger">
+                <div *ngIf="numAvion.errors?.['required']">Plane Number is required</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pilot Number Selector -->
+          <div class="form-group row">
+            <label for="piloteSelect" class="col-sm-3 col-form-label">Pilot Number:</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="piloteSelect" [(ngModel)]="volRequest.numPilote" name="numPilote" #numPilote="ngModel" required>
+                <option *ngFor="let pilote of pilotes" [value]="pilote.numPilote">{{ pilote.numPilote }}</option>
+              </select>
+              <div *ngIf="numPilote.invalid && isSubmitted" class="alert alert-danger">
+                <div *ngIf="numPilote.errors?.['required']">Pilot Number is required</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flight Number -->
+          <div class="form-group row">
+            <label for="numVol" class="col-sm-3 col-form-label">Flight Number<span class="requiredStar">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="numVol" required maxlength="6"
+                [(ngModel)]="volRequest.numVol" name="numVol" #numVol="ngModel">
+              <div *ngIf="numVol.invalid && isSubmitted" class="alert alert-danger mt-2">
+                <small *ngIf="numVol.errors?.['required']">Flight Number is required</small>
+                <small *ngIf="numVol.errors?.['maxlength']">Flight Number cannot exceed 6 characters</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Departure City -->
+          <div class="form-group row">
+            <label for="villeDep" class="col-sm-3 col-form-label">Departure City<span class="requiredStar">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="villeDep" required maxlength="20"
+                [(ngModel)]="volRequest.villeDep" name="villeDep" #villeDep="ngModel">
+              <div *ngIf="villeDep.invalid && isSubmitted" class="alert alert-danger">
+                <div *ngIf="villeDep.errors?.['required']">Departure City is required</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arrival City -->
+          <div class="form-group row">
+            <label for="villeArr" class="col-sm-3 col-form-label">Arrival City<span class="requiredStar">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="villeArr" required maxlength="20"
+                [(ngModel)]="volRequest.villeArr" name="villeArr" #villeArr="ngModel">
+              <div *ngIf="villeArr.invalid && isSubmitted" class="alert alert-danger">
+                <div *ngIf="villeArr.errors?.['required']">Arrival City is required</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Departure Time -->
+          <div class="form-group row">
+            <label for="heureDep" class="col-sm-3 col-form-label">Departure Time<span class="requiredStar">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="heureDep" required pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
+                [(ngModel)]="volRequest.heureDep" name="heureDep" #heureDep="ngModel" placeholder="HH:MM">
+              <div *ngIf="heureDep.invalid && isSubmitted" class="alert alert-danger">
+                <div *ngIf="heureDep.errors?.['required']">Departure Time is required</div>
+                <div *ngIf="heureDep.errors?.['pattern']">Invalid time format. Use HH:MM</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arrival Time -->
+          <div class="form-group row">
+            <label for="heureArr" class="col-sm-3 col-form-label">Arrival Time<span class="requiredStar">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="heureArr" required pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
+                [(ngModel)]="volRequest.heureArr" name="heureArr" #heureArr="ngModel" placeholder="HH:MM">
+              <div *ngIf="heureArr.invalid && isSubmitted" class="alert alert-danger">
+                <div *ngIf="heureArr.errors?.['required']">Arrival Time is required</div>
+                <div *ngIf="heureArr.errors?.['pattern']">Invalid time format. Use HH:MM</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="table-footer">
+          <button class="btn btn-success" type="submit">Submit</button>
+        </div>
+      </form>
+
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+    </div>
+  </div>
+</div>

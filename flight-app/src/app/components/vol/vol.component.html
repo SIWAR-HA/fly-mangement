@@ -1,0 +1,38 @@
+<div class="container-xl">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4><b>Liste des vols</b></h4>
+          </div>
+        </div>
+      </div>
+    
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Pilote</th>
+            <th>Avion</th>
+            <th>Ville de Départ</th>
+            <th>Ville d'Arrivée</th>
+            <th>Heure de Départ</th>
+            <th>Heure d'Arrivée</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vol of vols">
+            <td>{{ vol.numVol }}</td>
+            <td>{{ vol.pilote.nomPilote }}</td>
+            <td>{{ vol.avion.nomAvion }}</td>
+            <td>{{ vol.villeDep }}</td>
+            <td>{{ vol.villeArr }}</td>
+            <td>{{ vol.heureDep }}</td>
+            <td>{{ vol.heureArr }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

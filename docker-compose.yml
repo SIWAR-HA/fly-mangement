@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+
+  fly-backend:
+    build:
+      context: ./flightmanager
+      dockerfile: Dockerfile
+    image: flightmanager
+    container_name: flightmanager
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/econocom_flights
+      SPRING_DATASOURCE_USERNAME: hammouda
+      SPRING_DATASOURCE_PASSWORD: hammouda
+    depends_on:
+      - mysql
+    networks:
+      - fly-network
+
+  fly-frontend:
+    build:
+      context: ./flight-app
+      dockerfile: Dockerfile
+    image: flight-app
+    container_name: flightapi
+    ports:
+      - "4200:82"
+    networks:
+      - fly-network
+    depends_on:
+      - fly-backend
+  mysql:
+    container_name: ms_mysql
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: econocom_flights
+      MYSQL_USER: hammouda
+      MYSQL_PASSWORD: hammouda
+    ports:
+      - "3306:3306"
+    networks:
+      - fly-network
+    restart: always
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  phpmyadmin:
+    container_name: ms_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: hammouda
+      PMA_PASSWORD: hammouda
+    ports:
+      - "8080:80"
+    networks:
+      - fly-network
+    restart: always
+
+
+volumes:
+  mysql-data:
+
+
+networks:
+  fly-network:
+    driver: bridge

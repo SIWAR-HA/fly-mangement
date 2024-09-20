@@ -1,0 +1,41 @@
+
+  <div class="container-xl">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>Liste des Avions</b></h4>
+            </div>
+          </div>
+        </div>
+      
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <tr>
+                <th>Numéro</th>
+                <th>Nom</th>
+                <th>Capacite</th>
+                <th>Localisation</th>
+                
+              </tr>
+             
+       
+          </thead>
+          <tbody>
+            <tr *ngFor="let avion of avions">
+              <td>{{avion.numAvion}}</td>
+              <td>{{avion.nomAvion}}</td>
+              <td>{{avion.capacite}}</td>
+              <td>{{avion.localisation}}</td>
+              
+        
+         </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  

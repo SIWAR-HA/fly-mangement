@@ -1,0 +1,64 @@
+<div class="container-xl">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <!-- Filtres Pilote et Avion -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="piloteSelect">Sélectionner un pilote</label>
+            <select class="form-control" id="piloteSelect" [(ngModel)]="selectedPilote" (change)="filterVols()">
+              <option *ngFor="let pilote of pilotes" [value]="pilote.numPilote">
+                {{ pilote.nomPilote }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="avionSelect">Sélectionner un avion</label>
+            <select class="form-control" id="avionSelect" [(ngModel)]="selectedAvion" (change)="filterVols()">
+              <option *ngFor="let avion of avions" [value]="avion.numAvion">
+                {{ avion.nomAvion }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bouton pour afficher les vols -->
+      <div class="text-left mb-3">
+        <button class="btn btn-primary" (click)="filterVols()">Afficher les Vols</button>
+      </div>
+
+      <!-- Tableau des vols filtrés -->
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>ID</th>
+                <th>Pilote</th>
+                <th>Avion</th>
+                <th>Ville Départ</th>
+                <th>Ville Arrivée</th>
+                <th>Heure Départ</th>
+                <th>Heure Arrivée</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let vol of vols">
+                <td>{{ vol.numVol }}</td>
+                <td>{{ vol.pilote.nomPilote }}</td>
+                <td>{{ vol.avion.nomAvion }}</td>
+                <td>{{ vol.villeDep }}</td>
+                <td>{{ vol.villeArr }}</td>
+                <td>{{ vol.heureDep }}</td>
+                <td>{{ vol.heureArr }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container-xl">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4><b>Flight Management</b></h4>
+            </div>
+            <div class="col-sm-6">
+           <button class="btn btn-success" (click)="AddFlight()">
+                <i class='fas fa-plus-circle'></i><span> ADD</span>
+              </button>
+              <button class="btn btn-secondary ml-2" (click)="Pilotes()">
+                <i class='fas fa-filter'></i><span> Pilotes</span>
+              </button>
+              <button class="btn btn-secondary ml-2" (click)="Avions()">
+                <i class='fas fa-filter'></i><span> Avions</span>
+              </button>
+              <button class="btn btn-secondary ml-2" (click)="Vols()">
+                <i class='fas fa-filter'></i><span> Vols</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <app-vol-filter></app-vol-filter>
+      </div>
+    </div>
+  </div>
+  
